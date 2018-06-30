@@ -60,15 +60,15 @@
                         <a class="js-arrow" href="#"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="absensi.html">
+                        <a href="<?php echo base_url();?>controllers/Absensi">
                             <i class="fas fa-calendar-alt"></i>Absensi</a>
                     </li>
                     <li>
-                        <a href="absensi.html">
+                        <a href="<?php echo base_url();?>controllers/Pegawai">
                             <i class="fas fa-user"></i>Pegawai</a>
                     </li>
                     <li>
-                        <a href="form.html">
+                        <a href="#">
                             <i class="far fa-check-square"></i>Daftar Proyek</a>
                     </li>
                     <li class="active has-sub">
@@ -76,23 +76,23 @@
                             <i class="fas fa-dollar"></i>Keuangan</a>
                         <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                             <li>
-                                <a href="table.html">
+                                <a href="<?php echo base_url();?>controllers/Kas">
                                     <i class="fas fa-briefcase"></i>Kas</a>
                             </li>
                             <li>
-                                <a href="table.html">
+                                <a href="<?php echo base_url();?>controllers/Pemasukan">
                                     <i class="fas fa-download"></i>Pemasukan Proyek</a>
                             </li>
                             <li>
-                                <a href="table.html">
+                                <a href="<?php echo base_url();?>controllers/Pengeluaran">
                                     <i class="fas fa-upload"></i>Pengeluaran Proyek</a>
                             </li>
                             <li>
-                                <a href="chart.html">
+                                <a href="#">
                                     <i class="fas fa-chart-bar"></i>Laporan Pemasukan</a>
                             </li>
                             <li>
-                                <a href="chart.html">
+                                <a href="#">
                                     <i class="fas fa-chart-bar"></i>Laporan Pengeluaran</a>
                             </li>
 
@@ -118,15 +118,15 @@
                         <a class="js-arrow" href="#"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="absensi.html">
+                        <a href="<?php echo base_url();?>controllers/Absensi">
                             <i class="fas fa-calendar-alt"></i>Absensi</a>
                     </li>
                     <li>
-                        <a href="absensi.html">
+                        <a href="<?php echo base_url();?>controllers/Pegawai">
                             <i class="fas fa-user"></i>Pegawai</a>
                     </li>
                     <li>
-                        <a href="form.html">
+                        <a href="#">
                             <i class="far fa-check-square"></i>Daftar Proyek</a>
                     </li>
                     <li class="active has-sub">
@@ -134,15 +134,15 @@
                             <i class="fas fa-dollar"></i>Keuangan</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="table.html">
+                                <a href="<?php echo base_url();?>controllers/Kas">
                                     <i class="fas fa-briefcase"></i>Kas</a>
                             </li>
                             <li>
-                                <a href="table.html">
+                                <a href="<?php echo base_url();?>controllers/Pemasukan">
                                     <i class="fas fa-download"></i>Pemasukan Proyek</a>
                             </li>
                             <li>
-                                <a href="table.html">
+                                <a href="<?php echo base_url();?>controllers/Pengeluaran">
                                     <i class="fas fa-upload"></i>Pengeluaran Proyek</a>
                             </li>
                             <li>
