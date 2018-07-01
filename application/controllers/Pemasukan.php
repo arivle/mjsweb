@@ -22,6 +22,7 @@ class Pemasukan extends CI_Controller {
 	{
 		$data['title'] = ucfirst($page);
 		$this->load->view('template/header',$data);
+		$this->load->view('pemasukan');
 		$this->load->view('template/footer');
 	}
     
