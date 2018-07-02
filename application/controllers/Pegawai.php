@@ -1,16 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pegawai extends CI_Controller {
+class Pegawai extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
+	 *        http://example.com/index.php/welcome
+	 *    - or -
+	 *        http://example.com/index.php/welcome/index
+	 *    - or -
 	 * Since this controller is set as the default controller in
 	 * config/routes.php, it's displayed at http://example.com/
 	 *
@@ -18,13 +19,21 @@ class Pegawai extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('M_pegawai');
+	}
+
 	public function index($page = 'pegawai')
 	{
 		$data['title'] = ucfirst($page);
-		$this->load->view('template/header',$data);
+		$data['pegawai'] = $this->M_pegawai->getAll()->result();
+		$this->load->view('template/header', $data);
 		$this->load->view('pegawai');
 		$this->load->view('template/footer');
 	}
-    
+
 
 }
