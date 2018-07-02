@@ -18,10 +18,13 @@ class Pemasukan extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index($page = 'pemasukan')
+	public function index()
 	{
-		$data['title'] = ucfirst($page);
+		$data['title'] = 'Pemasukan';
 		$this->load->view('template/header',$data);
+		$this->load->view('template/mobile_header',$data);
+		$this->load->view('template/desktop_header',$data);
+		$this->load->view('template/header_content',$data);
 		$this->load->view('pemasukan');
 		$this->load->view('template/footer');
 	}
