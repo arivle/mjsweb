@@ -8,10 +8,36 @@
 
 class M_pegawai extends CI_Model
 {
-	function __construct() {
+	function __construct()
+	{
 		parent::__construct();
 	}
-	function getAll(){
-		return $this->db->get('pegawai');
+
+	function getAll()
+	{
+		$this->db->select('*');
+		$this->db->from('pegawai');
+		$this->db->join('role', 'pegawai.idRole = role.idRole', 'left');
+		return $this->db->get();
+	}
+
+	function getRoles()
+	{
+		return $this->db->get('role');
+	}
+
+	function getPegawai($idPegawai)
+	{
+		return $this->db->get_where('pegawai', array('idPegawai' => $idPegawai));
+	}
+
+	function addPegawai($data)
+	{
+		$this->db->insert('pegawai', $data);
+	}
+
+	function updatePegawai($where,$data){
+		$this->db->where($where);
+		$this->db->update('pegawai',$data);
 	}
 }
