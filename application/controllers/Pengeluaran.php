@@ -18,10 +18,13 @@ class Pengeluaran extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index($page = 'pengeluaran')
+	public function index()
 	{
-		$data['title'] = ucfirst($page);
+		$data['title'] = 'Pengeluaran';
 		$this->load->view('template/header',$data);
+		$this->load->view('template/mobile_header',$data);
+		$this->load->view('template/desktop_header',$data);
+		$this->load->view('template/header_content',$data);
 		$this->load->view('pengeluaran');
 		$this->load->view('template/footer');
 	}
