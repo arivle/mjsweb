@@ -26,11 +26,14 @@ class Pegawai extends CI_Controller
 		$this->load->model('M_pegawai');
 	}
 
-	public function index($page = 'pegawai')
+	public function index()
 	{
-		$data['title'] = ucfirst($page);
+		$data['title'] = 'Pegawai';
 		$data['pegawai'] = $this->M_pegawai->getAll()->result();
-		$this->load->view('template/header', $data);
+		$this->load->view('template/header',$data);
+		$this->load->view('template/mobile_header',$data);
+		$this->load->view('template/desktop_header',$data);
+		$this->load->view('template/header_content',$data);
 		$this->load->view('pegawai');
 		$this->load->view('template/footer');
 	}
