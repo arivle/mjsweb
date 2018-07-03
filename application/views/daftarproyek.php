@@ -5,7 +5,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- DATA TABLE -->
-                            <h3 class="title-5 m-b-35">data absensi</h3>
+                            <h3 class="title-5 m-b-35">Data Proyek</h3>
                             <div class="table-data__tool">
                                 <div class="table-data__tool-left">
                                     <div class="rs-select2--light rs-select2--md">
@@ -29,8 +29,7 @@
                                     </button>
                                 </div>
                                 <div class="table-data__tool-right">
-                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal"
-                                            data-target="#tambahData">
+                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#tambahData">
                                         <i class="zmdi zmdi-plus"></i>tambah data
                                     </button>
                                     <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
@@ -48,22 +47,31 @@
                                     <thead>
                                     <tr>
                                         <th>no.</th>
+                                        <th>nama klien</th>
+                                        <th>kategori</th>
+                                        <th>fee</th>
+                                        <th>deadline</th>
                                         <th>nama pegawai</th>
-                                        <th>tanggal</th>
-                                        <th>waktu masuk</th>
-                                        <th>waktu keluar</th>
-                                        <th>keterangan</th>
-                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr class="tr-shadow">
                                         <td>1.</td>
-                                        <td>Loadhi Didi</td>
-                                        <td>2018-09-27</td>
-                                        <td>02:12</td>
-                                        <td>02:15</td>
-                                        <td class="desc">Pengen bukber</td>
+                                        <td>Jonathan</td>
+                                       <!-- <td>
+                                            <div class="rs-select2--trans rs-select2--sm">
+                                                <select class="js-select2" name="property">
+                                                    <option value="">Web</option>
+                                                    <option value="" selected="selected">Aplikasi Desktop</option>
+                                                    <option value="">Android</option>
+                                                </select>
+                                                <div class="dropDownSelect2"></div>
+                                            </div>
+                                        </td>-->
+                                        <td>web</td>
+                                        <td>1000000</td>
+                                        <td>besok</td>
+                                        <td>loadhi</td>
                                         <td>
                                             <div class="table-data-feature">
                                                 <button class="item" data-toggle="tooltip" data-placement="top"
@@ -88,19 +96,12 @@
                             <!-- END DATA TABLE -->
                         </div>
                     </div>
-                    <!-- <div class="col-md-12">
-                        <div class="copyright">
-                            <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a
-                                    href="https://colorlib.com">Colorlib</a>.</p>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
-        <!-- end main content -->
+        <!-- END MAIN CONTENT -->
         <!-- modal create -->
-        <div class="modal fade" id="tambahData" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel"
-             aria-hidden="true">
+        <div class="modal fade" id="tambahData" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -113,50 +114,55 @@
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="pegawai-select" class=" form-control-label">Nama Pegawai</label>
+                                    <label class=" form-control-label">Static</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <select name="pegawai-select" id="pegawai-select" class="form-control">
-                                        <option value="0">Please select</option>
-                                        <option value="1">Option #1</option>
-                                        <option value="2">Option #2</option>
-                                        <option value="3">Option #3</option>
-                                    </select>
+                                    <p class="form-control-static">Proyek</p>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="tanggal-input" class=" form-control-label">Tanggal</label>
+                                    <label for="nama-input" class=" form-control-label">Nama Klien</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="tanggal-input" name="tanggal-input" placeholder=""
-                                           class="form-control">
+                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <small class="form-text text-muted">Masukkan nama klien </small>
+                                </div>
+                            </div> 
+                                <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="nama-input" class=" form-control-label">kategori</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <small class="form-text text-muted">Masukkan kategori proyek </small>
                                 </div>
                             </div>
-                            <div class="row form-group">
+                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="masuk-input" class=" form-control-label">Jam Masuk</label>
+                                    <label for="nama-input" class=" form-control-label">fee</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="masuk-input" name="masuk-input" placeholder=""
-                                           class="form-control">
+                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <small class="form-text text-muted">Masukkan fee </small>
                                 </div>
                             </div>
-                            <div class="row form-group">
+                              <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="keluar-input" class=" form-control-label">Jam Keluar</label>
+                                    <label for="nama-input" class=" form-control-label">deadline</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="keluar-input" name="keluar-input" placeholder=""
-                                           class="form-control">
+                                    <input type="tanggal-input" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <small class="form-text text-muted">Masukkan tanggal deadline </small>
                                 </div>
                             </div>
-                            <div class="row form-group">
+                               <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="keterangan-input" class=" form-control-label">Keterangan</label>
+                                    <label for="nama-input" class=" form-control-label">nama pegawai</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <textarea name="keterangan-input" id="keterangan-input" rows="9" placeholder="Masukkan keterangan..." class="form-control"></textarea>
+                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <small class="form-text text-muted">Masukkan nama pegawai yang melayani</small>
                                 </div>
                             </div>
                         </form>

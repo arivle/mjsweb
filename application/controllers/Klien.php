@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Absensi extends CI_Controller {
+class Klien extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,12 +20,12 @@ class Absensi extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['title'] = 'Absensi';
-		$this->load->view('template/header',$data);
-		$this->load->view('template/mobile_header',$data);
+    $data['title'] = 'Daftar Proyek';
+    $this->load->view('template/header',$data);
+    $this->load->view('template/mobile_header',$data);
 		$this->load->view('template/desktop_header',$data);
 		$this->load->view('template/header_content',$data);
-		$this->load->view('absensi');
+		$this->load->view('klien');
 		$this->load->view('template/footer');
 	}
     
