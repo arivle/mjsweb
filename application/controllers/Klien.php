@@ -20,7 +20,7 @@ class Klien extends CI_Controller {
 	 */
 	public function index()
 	{
-    $data['title'] = 'Daftar Proyek';
+    $data['title'] = 'Data Klien';
     $this->load->view('template/header',$data);
     $this->load->view('template/mobile_header',$data);
 		$this->load->view('template/desktop_header',$data);
