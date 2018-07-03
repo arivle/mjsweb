@@ -30,6 +30,10 @@
                     </li>
                     <li>
                         <a href="<?php echo base_url()?>klien">
+                            <i class="far fa-check-square"></i>Klien</a>
+                    </li>
+                     <li>
+                        <a href="<?php echo base_url()?>daftarproyek">
                             <i class="far fa-check-square"></i>Daftar Proyek</a>
                     </li>
                     <li class="has-sub">
