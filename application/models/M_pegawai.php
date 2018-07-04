@@ -36,15 +36,15 @@ class M_pegawai extends CI_Model
 		$this->db->insert('pegawai', $data);
 	}
 
-	function updatePegawai($where, $data)
+	function updatePegawai($idPegawai, $data)
 	{
-		$this->db->where($where);
+		$this->db->where(array('idPegawai'=>$idPegawai));
 		$this->db->update('pegawai', $data);
 	}
 
-	function hapusPegawai($where)
+	function hapusPegawai($idPegawai)
 	{
-		$this->db->where($where);
+		$this->db->where(array('idPegawai'=>$idPegawai));
 		$this->db->delete('pegawai');
 	}
 }

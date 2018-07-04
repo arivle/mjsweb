@@ -36,15 +36,15 @@ class M_daftarproyek
 		$this->db->insert('proyek', $data);
 	}
 
-	function updateProyek($where, $data)
+	function updateProyek($idProyek, $data)
 	{
-		$this->db->where($where);
+		$this->db->where(array('idProyek'=>$idProyek));
 		$this->db->update('proyek', $data);
 	}
 
-	function hapusProyek($where)
+	function hapusProyek($idProyek)
 	{
-		$this->db->where($where);
+		$this->db->where(array('idProyek'=>$idProyek));
 		$this->db->delete('proyek');
 	}
 }
