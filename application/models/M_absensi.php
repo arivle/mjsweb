@@ -17,15 +17,16 @@ class M_absensi
 	{
 		$this->db->select('*');
 		$this->db->from('absensi');
-		$this->db->join('pegawai', 'absensi.idPegawai = pegawai.idPegawai', 'left');
+		$this->db->join('users', 'absensi.idPegawai = users.id', 'left');
 		return $this->db->get();
 	}
 
 	function getByDate($date){
 		$this->db->select('*');
 		$this->db->from('absensi');
-		$this->db->join('pegawai', 'absensi.idPegawai = pegawai.idPegawai', 'left');
+		$this->db->join('users', 'absensi.idPegawai = users.id', 'left');
 		$this->db->where(array('tanggal'=>$date));
+		return $this->db->get();
 	}
 
 	function getPegawais()

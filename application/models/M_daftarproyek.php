@@ -18,6 +18,7 @@ class M_daftarproyek
 		$this->db->select('*');
 		$this->db->from('proyek');
 		$this->db->join('kategori', 'proyek.idKategori = kategori.idKategori', 'left');
+		$this->db->join('users','proyek.idPegawai = users.id');
 		return $this->db->get();
 	}
 
