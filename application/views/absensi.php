@@ -57,13 +57,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+										<?php
+										$i = 0;
+										foreach($absensi as $a){
+											$i++;
+											?>
                                     <tr class="tr-shadow">
-                                        <td>1.</td>
-                                        <td>Loadhi Didi</td>
-                                        <td>2018-09-27</td>
-                                        <td>02:12</td>
-                                        <td>02:15</td>
-                                        <td class="desc">Pengen bukber</td>
+                                        <td><?= $i ?>.</td>
+                                        <td><?= $a->first_name.' '.$a->last_name ?></td>
+                                        <td><?= $a->tanggal ?></td>
+                                        <td><?= $a->waktuMasuk ?></td>
+                                        <td><?= $a->waktuKeluar ?></td>
+                                        <td class="desc"><?php echo strlen($a->keterangan) > 50 ? substr($a->keterangan,0,30)."..." : $a->keterangan ?></td>
                                         <td>
                                             <div class="table-data-feature">
                                                 <button class="item" data-toggle="tooltip" data-placement="top"
@@ -82,6 +87,7 @@
                                         </td>
                                     </tr>
                                     <tr class="spacer"></tr>
+										<?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -110,7 +116,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="<?= base_url() ?>Absensi/tambahManual" id="formTambahData" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="pegawai-select" class=" form-control-label">Nama Pegawai</label>
@@ -118,9 +124,11 @@
                                 <div class="col-12 col-md-9">
                                     <select name="pegawai-select" id="pegawai-select" class="form-control">
                                         <option value="0">Please select</option>
-                                        <option value="1">Option #1</option>
-                                        <option value="2">Option #2</option>
-                                        <option value="3">Option #3</option>
+                                        <?php
+										foreach ($pegawai as $p){
+											echo "<option value=\"$p->id\">".$p->first_name." ".$p->last_name."</option>";
+										}
+										?>
                                     </select>
                                 </div>
                             </div>
@@ -163,7 +171,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
+                        <button type="submit" form="formTambahData" class="btn btn-primary">Confirm</button>
                     </div>
                 </div>
             </div>

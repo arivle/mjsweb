@@ -11,7 +11,7 @@
  Target Server Version : 100129
  File Encoding         : 65001
 
- Date: 04/07/2018 19:39:17
+ Date: 04/07/2018 21:20:07
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `absensi`;
 CREATE TABLE `absensi`  (
-  `idAbsensi` bigint(20) NOT NULL,
+  `idAbsensi` bigint(20) NOT NULL AUTO_INCREMENT,
   `idPegawai` int(11) NULL DEFAULT NULL,
   `waktuMasuk` time(0) NULL DEFAULT NULL,
   `waktuKeluar` time(0) NULL DEFAULT NULL,
@@ -30,7 +30,14 @@ CREATE TABLE `absensi`  (
   `keterangan` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   PRIMARY KEY (`idAbsensi`) USING BTREE,
   INDEX `fk_absensi_pegawai_1`(`idPegawai`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of absensi
+-- ----------------------------
+INSERT INTO `absensi` VALUES (1, 1, '20:37:25', '20:37:28', '2018-07-04', 'ke warnet');
+INSERT INTO `absensi` VALUES (2, 1, '20:37:28', '20:37:29', NULL, 'OwO kok balik');
+INSERT INTO `absensi` VALUES (3, 0, '20:37:28', '20:37:29', NULL, 'Nonton Man-Tan');
 
 -- ----------------------------
 -- Table structure for bukti

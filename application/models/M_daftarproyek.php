@@ -6,7 +6,7 @@
  * Time: 3:41 PM
  */
 
-class M_daftarproyek
+class M_daftarproyek extends CI_Model
 {
 	function __construct()
 	{
