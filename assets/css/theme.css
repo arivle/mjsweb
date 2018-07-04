@@ -1644,6 +1644,7 @@ section {
 
 .header-mobile {
     position: absolute;
+	background: #4272d7;
     top: 0;
     left: 0;
     right: 0;
