@@ -30,13 +30,13 @@ class M_klien extends CI_Model
 
 	function updateKlien($where, $data)
 	{
-		$this->db->where($where);
+		$this->db->where('idKlien',$where);
 		$this->db->update('klien', $data);
 	}
 
 	function hapusKlien($where)
 	{
-		$this->db->where($where);
+		$this->db->where('idKlien',$where);
 		$this->db->delete('klien');
 	}
 }

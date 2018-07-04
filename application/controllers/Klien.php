@@ -36,5 +36,31 @@ class Klien extends CI_Controller
         $this->load->view('klien');
         $this->load->view('template/footer');
     }
+	function tambah(){
+		$data = array(
+			'namaKlien' => $this->input->post('nama-input'),
+			'noTelp' => $this->input->post('telp-input'),
+			'email' => $this->input->post('email-input'),
+			'alamat' => $this->input->post('alamat-input')
+		);
+		$this->M_klien->addKlien($data);
+		redirect('klien');
+	}
+	function hapus($idklien){
+		$this->M_klien->hapusKlien($idklien);
+		redirect('klien');
+	}
+
+	function edit(){
+		$idklien = $this->input->post('id-input');
+		$data = array(
+			'namaKlien' => $this->input->post('nama-input'),
+			'noTelp' => $this->input->post('telp-input'),
+			'email' => $this->input->post('email-input'),
+			'alamat' => $this->input->post('alamat-input')
+		);
+		$this->M_klien->updateKlien($idklien,$data);
+		redirect('klien');
+	}
 
 }

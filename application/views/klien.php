@@ -66,24 +66,28 @@
                                         <td><?= $k->email ?></td>
                                         <td><?= $k->alamat ?></td>
                                         <td>
-                                            <div class="table-data-feature">
-                                                <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="Edit">
-                                                    <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="Delete">
-                                                    <i class="zmdi zmdi-delete"></i>
-                                                </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="More">
-                                                    <i class="zmdi zmdi-more"></i>
-                                                </button>
-                                            </div>
+											<div class="table-data-feature">
+												<button class="item"
+														title="Edit" data-toggle="modal"
+														data-target="#editData-<?= $k->idKlien ?>">
+													<i class="zmdi zmdi-edit"></i>
+												</button>
+												<button class="item" data-toggle="tooltip" data-placement="top"
+														title="Delete"
+														onclick="window.location.href='<?= base_url() . "klien/hapus/" . $k->idKlien ?>'">
+													<i class="zmdi zmdi-delete"></i>
+												</button>
+												<button class="item" data-toggle="tooltip" data-placement="top"
+														title="More">
+													<i class="zmdi zmdi-more"></i>
+												</button>
+											</div>
                                         </td>
                                     </tr>
                                     <tr class="spacer"></tr>
-									<?php } ?>
+									<?php }
+									unset($k);
+									?>
                                     </tbody>
                                 </table>
                             </div>
@@ -105,7 +109,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="<?= base_url() ?>klien/tambah" id="formTambahData" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label class=" form-control-label">Static</label>
@@ -125,28 +129,28 @@
                             </div> 
                                 <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="nama-input" class=" form-control-label">no telepon</label>
+                                    <label for="telp-input" class=" form-control-label">no telepon</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <input type="text" id="telp-input" name="telp-input" placeholder="" class="form-control">
                                     <small class="form-text text-muted">Masukkan nomor telepon klien </small>
                                 </div>
                             </div>
                              <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="nama-input" class=" form-control-label">email</label>
+                                    <label for="email-input" class=" form-control-label">email</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <input type="text" id="email-input" name="email-input" placeholder="" class="form-control">
                                     <small class="form-text text-muted">Masukkan email klien </small>
                                 </div>
                             </div>
                               <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="nama-input" class=" form-control-label">alamat</label>
+                                    <label for="alamat-input" class=" form-control-label">alamat</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <input type="text" id="alamat-input" name="alamat-input" placeholder="" class="form-control">
                                     <small class="form-text text-muted">Masukkan alamat klien </small>
                                 </div>
                             </div>
@@ -154,9 +158,81 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
+                        <button type="submit" form="formTambahData" class="btn btn-primary">Confirm</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- end modal create -->
+		<?php
+		foreach ($klien as $k){?>
+			<!-- modal create -->
+			<div class="modal fade" id="editData-<?= $k->idKlien ?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-md" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="mediumModalLabel">Tambah Data</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="<?= base_url() ?>klien/edit" id="formEditData-<?=$k->idKlien?>"" method="post" enctype="multipart/form-data" class="form-horizontal">
+							<input type="hidden" value="<?=$k->idKlien?>" name="id-input">
+							<div class="row form-group">
+									<div class="col col-md-3">
+										<label class=" form-control-label">Static</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<p class="form-control-static">Klien</p>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="nama-input" class=" form-control-label">Nama Klien</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control" value="<?=$k->namaKlien?>">
+										<small class="form-text text-muted">Masukkan nama klien </small>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="telp-input" class=" form-control-label">no telepon</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<input type="text" id="telp-input" name="telp-input" placeholder="" class="form-control" value="<?=$k->noTelp?>">
+										<small class="form-text text-muted">Masukkan nomor telepon klien </small>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="email-input" class=" form-control-label">email</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<input type="text" id="email-input" name="email-input" placeholder="" class="form-control" value="<?=$k->email?>">
+										<small class="form-text text-muted">Masukkan email klien </small>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="alamat-input" class=" form-control-label">alamat</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<input type="text" id="alamat-input" name="alamat-input" placeholder="" class="form-control" value="<?=$k->alamat?>">
+										<small class="form-text text-muted">Masukkan alamat klien </small>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+							<button type="submit" form="formEditData-<?=$k->idKlien?>" class="btn btn-primary">Confirm</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end modal create -->
+		<?php }
+		unset($k);
+		?>
