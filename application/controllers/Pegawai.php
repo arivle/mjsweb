@@ -36,7 +36,7 @@ class Pegawai extends CI_Controller
     {
         if (!$this->ion_auth->logged_in()) {
             // redirect them to the login page
-            redirect('pegawai/login', 'refresh');
+            redirect('login', 'refresh');
         } else {
             redirect('beranda', 'refresh');
             //list the users
@@ -76,7 +76,7 @@ class Pegawai extends CI_Controller
             // salah, redirect login
             else {
                 $this->session->flashdata('message', $this->ion_auth->errors());
-                redirect('pegawai/login', 'refresh');
+                redirect('login', 'refresh');
             }
         } else {
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
@@ -96,7 +96,7 @@ class Pegawai extends CI_Controller
         $logout = $this->ion_auth->logout();
         // redirect them to the login page
         $this->session->set_flashdata('message', $this->ion_auth->messages());
-        redirect('pegawai/login', 'refresh');
+        redirect('login', 'refresh');
     }
     /**
      * Change password
@@ -107,7 +107,7 @@ class Pegawai extends CI_Controller
         $this->form_validation->set_rules('new', $this->lang->line('change_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_confirm]');
         $this->form_validation->set_rules('new_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
         if (!$this->ion_auth->logged_in()) {
-            redirect('pegawai/login', 'refresh');
+            redirect('login', 'refresh');
         }
         $user = $this->ion_auth->user()->row();
         if ($this->form_validation->run() === false) {
@@ -195,7 +195,7 @@ class Pegawai extends CI_Controller
             if ($forgotten) {
                 // if there were no errors
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect("pegawai/login", 'refresh'); //we should display a confirmation page here instead of the login page
+                redirect("login", 'refresh'); //we should display a confirmation page here instead of the login page
             } else {
                 $this->session->set_flashdata('message', $this->ion_auth->errors());
                 redirect("pegawai/forgot_password", 'refresh');
@@ -257,7 +257,7 @@ class Pegawai extends CI_Controller
                     if ($change) {
                         // if the password was successfully changed
                         $this->session->set_flashdata('message', $this->ion_auth->messages());
-                        redirect("pegawai/login", 'refresh');
+                        redirect("login", 'refresh');
                     } else {
                         $this->session->set_flashdata('message', $this->ion_auth->errors());
                         redirect('pegawai/reset_password/' . $code, 'refresh');
