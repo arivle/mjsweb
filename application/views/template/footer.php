@@ -15,10 +15,16 @@
     <script src="<?php echo base_url()."assets";?>/vendor/circle-progress/circle-progress.min.js"></script>
     <script src="<?php echo base_url()."assets";?>/vendor/select2/select2.min.js"></script>
     <script src="<?php echo base_url()."assets";?>/vendor/chartjs/Chart.bundle.min.js"></script>
-    
+    <script src="<?php echo base_url()."assets";?>/vendor/clockpicker/bootstrap-clockpicker.min.js"></script>
+
 
     <!-- Main JS-->
     <script src="<?php echo base_url()."assets";?>/js/main.js"></script>
+	<script type="text/javascript">
+		$('.clockpicker').clockpicker({
+			autoclose: true
+		});
+	</script>
   </body>
 </html>
 <!-- end document-->
