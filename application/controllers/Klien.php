@@ -19,9 +19,16 @@ class Klien extends CI_Controller
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('M_klien');
+	}
+
     public function index()
     {
         $data['title'] = 'Data Klien';
+        $data['klien'] = $this->M_klien->getAll()->result();
         $this->load->view('template/header', $data);
         $this->load->view('template/mobile_header', $data);
         $this->load->view('template/desktop_header', $data);
@@ -29,5 +36,31 @@ class Klien extends CI_Controller
         $this->load->view('klien');
         $this->load->view('template/footer');
     }
+	function tambah(){
+		$data = array(
+			'namaKlien' => $this->input->post('nama-input'),
+			'noTelp' => $this->input->post('telp-input'),
+			'email' => $this->input->post('email-input'),
+			'alamat' => $this->input->post('alamat-input')
+		);
+		$this->M_klien->addKlien($data);
+		redirect('klien');
+	}
+	function hapus($idklien){
+		$this->M_klien->hapusKlien($idklien);
+		redirect('klien');
+	}
+
+	function edit(){
+		$idklien = $this->input->post('id-input');
+		$data = array(
+			'namaKlien' => $this->input->post('nama-input'),
+			'noTelp' => $this->input->post('telp-input'),
+			'email' => $this->input->post('email-input'),
+			'alamat' => $this->input->post('alamat-input')
+		);
+		$this->M_klien->updateKlien($idklien,$data);
+		redirect('klien');
+	}
 
 }

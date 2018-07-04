@@ -44,7 +44,7 @@ class Absensi extends CI_Controller {
 	}
 
 	function edit(){
-		$idAbsensi = $this->input->post();
+		$idAbsensi = $this->input->post('id-Absensi');
 		$data = array(
 			'idPegawai' => $this->input->post('pegawai-select'),
 			'tanggal' => $this->input->post('tanggal-input'),

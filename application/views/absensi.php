@@ -200,9 +200,9 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="<?= base_url() ?>Absensi/edit" id="formEditData-<?=$a->idPegawai?>" method="post"
+					<form action="<?= base_url() ?>Absensi/edit" id="formEditData-<?=$a->idAbsensi?>" method="post"
 						  enctype="multipart/form-data" class="form-horizontal">
-						<input type="hidden" name="id-Pegawai" value="<?=$a->idPegawai?>">
+						<input type="hidden" name="id-Absensi" value="<?=$a->idAbsensi?>">
 						<div class="row form-group">
 							<div class="col col-md-3">
 								<label for="pegawai-select" class=" form-control-label">Nama Pegawai</label>
@@ -265,7 +265,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="submit" form="formEditData-<?=$a->idPegawai?>" class="btn btn-primary">Confirm</button>
+					<button type="submit" form="formEditData-<?=$a->idAbsensi?>" class="btn btn-primary">Confirm</button>
 				</div>
 			</div>
 		</div>
