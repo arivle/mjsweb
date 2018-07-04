@@ -55,22 +55,16 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+									<?php
+									$i=0;
+									foreach ($klien as $k){
+										$i++; ?>
                                     <tr class="tr-shadow">
-                                        <td>1.</td>
-                                        <td>Jonathan</td>
-                                       <!-- <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option value="">Web</option>
-                                                    <option value="" selected="selected">Aplikasi Desktop</option>
-                                                    <option value="">Android</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </td>-->
-                                        <td>081249006597</td>
-                                        <td>jonathan@gmail.com</td>
-                                        <td>jalan kartini</td>
+                                        <td><?= $i.'.' ?></td>
+                                        <td><?= $k->namaKlien ?></td>
+                                        <td><?= $k->noTelp ?></td>
+                                        <td><?= $k->email ?></td>
+                                        <td><?= $k->alamat ?></td>
                                         <td>
                                             <div class="table-data-feature">
                                                 <button class="item" data-toggle="tooltip" data-placement="top"
@@ -89,6 +83,7 @@
                                         </td>
                                     </tr>
                                     <tr class="spacer"></tr>
+									<?php } ?>
                                     </tbody>
                                 </table>
                             </div>

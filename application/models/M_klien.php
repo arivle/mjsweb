@@ -6,7 +6,7 @@
  * Time: 4:16 PM
  */
 
-class M_klien
+class M_klien extends CI_Model
 {
 	function __construct()
 	{

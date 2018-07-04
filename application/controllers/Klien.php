@@ -19,9 +19,16 @@ class Klien extends CI_Controller
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('M_klien');
+	}
+
     public function index()
     {
         $data['title'] = 'Data Klien';
+        $data['klien'] = $this->M_klien->getAll()->result();
         $this->load->view('template/header', $data);
         $this->load->view('template/mobile_header', $data);
         $this->load->view('template/desktop_header', $data);
