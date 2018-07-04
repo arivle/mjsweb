@@ -32,23 +32,23 @@
                             <i class="fas fa-dollar"></i>Keuangan</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             <li>
-                                <a href="<?php echo base_url()?>kas">
+                                <a href="<?php echo base_url()?>keuangan/kas">
                                     <i class="fas fa-briefcase"></i>Kas</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url()?>pemasukan">
+                                <a href="<?php echo base_url()?>keuangan/pemasukan">
                                     <i class="fas fa-download"></i>Pemasukan Proyek</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url()?>pengeluaran">
+                                <a href="<?php echo base_url()?>keuangan/pengeluaran">
                                     <i class="fas fa-upload"></i>Pengeluaran Proyek</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url()?>lap_pemasukan">
+                                <a href="<?php echo base_url()?>keuangan/lap_pemasukan">
                                     <i class="fas fa-chart-bar"></i>Laporan Pemasukan</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url()?>lap_pengeluaran">
+                                <a href="<?php echo base_url()?>keuangan/lap_pengeluaran">
                                     <i class="fas fa-chart-bar"></i>Laporan Pengeluaran</a>
                             </li>
 
