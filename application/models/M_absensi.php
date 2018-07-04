@@ -21,6 +21,13 @@ class M_absensi
 		return $this->db->get();
 	}
 
+	function getByDate($date){
+		$this->db->select('*');
+		$this->db->from('absensi');
+		$this->db->join('pegawai', 'absensi.idPegawai = pegawai.idPegawai', 'left');
+		$this->db->where(array('tanggal'=>$date));
+	}
+
 	function getPegawais()
 	{
 		return $this->db->get('pegawai');
@@ -36,15 +43,15 @@ class M_absensi
 		$this->db->insert('absensi', $data);
 	}
 
-	function updateAbsensi($where, $data)
+	function updateAbsensi($idAbsensi, $data)
 	{
-		$this->db->where($where);
+		$this->db->where(array('idAbsensi'=>$idAbsensi));
 		$this->db->update('absensi', $data);
 	}
 
-	function hapusAbsensi($where)
+	function hapusAbsensi($idAbsensi)
 	{
-		$this->db->where($where);
+		$this->db->where(array('idAbsensi'=>$idAbsensi));
 		$this->db->delete('absensi');
 	}
 }
