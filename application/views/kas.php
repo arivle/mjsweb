@@ -40,8 +40,70 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- RINCIAN KAS -->
+                        <div class="row m-t-30">
+                            <div class="col-md-12">
+                                <div class="table-responsive table-responsive-data2">
+                                    <table class="table table-data2">
+                                        <thead>
+                                            <tr>
+                                                <th>Tanggal</th>
+                                                <th>Bukti</th>
+                                                <th>Transaksi</th>
+                                                <th>Kode</th>
+                                                <th>Debet (Rp.)</th>
+                                                <th>Kredit (Rp.)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="tr-shadow">
+                                                <td>2017-12-01 00:15</td>
+                                                <td><a href="#">201712010015.jpg</a></td>
+                                                <td class="desc">Saldo Awal</td>
+                                                <td>SDO</td>
+                                                <td>2,500,000</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr class="tr-shadow">
+                                                <td>2017-12-05 10:12</td>
+                                                <td><a href="#">201712051012.jpg</a></td>
+                                                <td class="desc">Pembelian Alat Tulis Kantor</td>
+                                                <td>ADM</td>
+                                                <td>-</td>
+                                                <td>250,000</td>
+                                            </tr>
+                                            <tr class="tr-shadow">
+                                                <td>2017-12-10 10:12</td>
+                                                <td><a href="#">201712101012.jpg</a></td>
+                                                <td class="desc">Ambil kas dari BCA</td>
+                                                <td>BNK</td>
+                                                <td>2,500,000</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr class="tr-shadow">
+                                                <td>2017-12-14 10:12</td>
+                                                <td><a href="#">201712141012.jpg</a></td>
+                                                <td class="desc">Pembelian Komputer</td>
+                                                <td>ADM</td>
+                                                <td>-</td>
+                                                <td>2,500,000</td>
+                                            </tr>
+                                            <tr class="tr-shadow">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="desc">Jumlah</td>
+                                                <td>5,000,000</td>
+                                                <td>2,750,000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END RINCIAN KAS -->
+                        <!-- TOTAL PEMASUKAN -->
                         <div class="row m-t-25">
-                            <!-- TOTAL PEMASUKAN -->
                             <div class="col-sm-6 col-lg-4">
                                 <div class="overview-item overview-item--c4">
                                     <div class="overview__inner">
@@ -99,66 +161,5 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- RINCIAN PEMASUKAN -->
-                        <div class="row m-t-30">
-                            <div class="col-md-12">
-                                <h3 class="title-5 m-b-35">Rincian Pemasukan</h3>
-                                <div class="table-responsive table-responsive-data2">
-                                    <table class="table table-data2">
-                                        <thead>
-                                            <tr>
-                                                <th>id</th>
-                                                <th>tanggal</th>
-                                                <th>nama transaksi</th>
-                                                <th>kategori</th>
-                                                <th>nominal (Rp.)</th>
-                                                <th>POC</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="tr-shadow">
-                                                <td>1113</td>
-                                                <td>2017-12-05 10:12</td>
-                                                <td class="desc">Pinjaman Bank ABC</td>
-                                                <td>Pinjaman</td>
-                                                <td>1,000,000</td>
-                                                <td>Loadhi Didi</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END RINCIAN PEMASUKAN -->
-                        <!-- RINCIAN PENGELUARAN -->
-                        <div class="row m-t-30">
-                            <div class="col-md-12">
-                                <h3 class="title-5 m-b-35">Rincian Pengeluaran</h3>
-                                <div class="table-responsive table-responsive-data2">
-                                    <table class="table table-data2">
-                                        <thead>
-                                            <tr>
-                                                <th>id</th>
-                                                <th>tanggal</th>
-                                                <th>nama transaksi</th>
-                                                <th>kategori</th>
-                                                <th>nominal (Rp.)</th>
-                                                <th>POC</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="tr-shadow">
-                                                <td>101</td>
-                                                <td>2017-12-02 10:12</td>
-                                                <td class="desc">Beli Krupuk</td>
-                                                <td>Lain-lain</td>
-                                                <td>10,000</td>
-                                                <td>Loadhi Didi</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END RINCIAN PENGELUARAN -->
+
                         <!-- END DATA TABLE -->
