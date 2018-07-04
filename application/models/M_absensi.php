@@ -31,7 +31,9 @@ class M_absensi extends CI_Model
 
 	function getPegawais()
 	{
-		return $this->db->get('pegawai');
+		$this->db->select('id,first_name,last_name');
+		$this->db->from('users');
+		return $this->db->get();
 	}
 
 	function getAbsensi($idAbsensi)
