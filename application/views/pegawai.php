@@ -56,11 +56,11 @@
                                     <tbody>
                                     <?php
                                     $i = 0;
-                                    foreach($pegawai as $p){
+                                    foreach($users as $user){
                                     $i++; ?>
                                     <tr class="tr-shadow">
                                         <td><?= $i.'.'; ?></td>
-                                        <td><?= $p->namaPegawai ?></td>
+                                        <td><?= $user->username ?></td>
                                         <td>
                                             <span class="role admin">admin</span>
                                         </td>
