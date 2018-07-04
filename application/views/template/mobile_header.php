@@ -25,7 +25,7 @@
                             <i class="fas fa-calendar-alt"></i>Absensi</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url()?>pegawai">
+                        <a href="<?php echo base_url()?>pegawai/list_users">
                             <i class="fas fa-user"></i>Pegawai</a>
                     </li>
                     <li>
