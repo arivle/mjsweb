@@ -48,7 +48,7 @@ class Pegawai extends CI_Controller
 		if (!$this->ion_auth->logged_in())
 		{
 			// redirect them to the login page
-			redirect('auth/login', 'refresh');
+			redirect('pegawai/login', 'refresh');
 		}
 		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
@@ -65,7 +65,7 @@ class Pegawai extends CI_Controller
 			{
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			$this->_render_page('pegawai' . DIRECTORY_SEPARATOR . 'index', $this->data);
 		}
 	}
 	/**
@@ -94,7 +94,7 @@ class Pegawai extends CI_Controller
 				// if the login was un-successful
 				// redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+				redirect('pegawai/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
 		else
@@ -111,7 +111,10 @@ class Pegawai extends CI_Controller
 				'id' => 'password',
 				'type' => 'password',
 			);
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
+			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$this->load->view('template/header', $this->data);
+			$this->load->view('login', $this->data);
+			$this->load->view('template/footer');
 		}
 	}
 	/**
@@ -124,7 +127,7 @@ class Pegawai extends CI_Controller
 		$logout = $this->ion_auth->logout();
 		// redirect them to the login page
 		$this->session->set_flashdata('message', $this->ion_auth->messages());
-		redirect('auth/login', 'refresh');
+		redirect('pegawai/login', 'refresh');
 	}
 	/**
 	 * Change password
@@ -136,7 +139,7 @@ class Pegawai extends CI_Controller
 		$this->form_validation->set_rules('new_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
 		if (!$this->ion_auth->logged_in())
 		{
-			redirect('auth/login', 'refresh');
+			redirect('pegawai/login', 'refresh');
 		}
 		$user = $this->ion_auth->user()->row();
 		if ($this->form_validation->run() === FALSE)
@@ -169,7 +172,7 @@ class Pegawai extends CI_Controller
 				'value' => $user->id,
 			);
 			// render
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
+			$this->_render_page('pegawai' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
 		}
 		else
 		{
@@ -184,7 +187,7 @@ class Pegawai extends CI_Controller
 			else
 			{
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/change_password', 'refresh');
+				redirect('pegawai/change_password', 'refresh');
 			}
 		}
 	}
@@ -219,7 +222,7 @@ class Pegawai extends CI_Controller
 			}
 			// set any errors and display the form
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'forgot_password', $this->data);
+			$this->_render_page('pegawai' . DIRECTORY_SEPARATOR . 'forgot_password', $this->data);
 		}
 		else
 		{
@@ -236,7 +239,7 @@ class Pegawai extends CI_Controller
 					$this->ion_auth->set_error('forgot_password_email_not_found');
 				}
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect("auth/forgot_password", 'refresh');
+				redirect("pegawai/forgot_password", 'refresh');
 			}
 			// run the forgotten password method to email an activation code to the user
 			$forgotten = $this->ion_auth->forgotten_password($identity->{$this->config->item('identity', 'ion_auth')});
@@ -244,12 +247,12 @@ class Pegawai extends CI_Controller
 			{
 				// if there were no errors
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
+				redirect("pegawai/login", 'refresh'); //we should display a confirmation page here instead of the login page
 			}
 			else
 			{
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect("auth/forgot_password", 'refresh');
+				redirect("pegawai/forgot_password", 'refresh');
 			}
 		}
 	}
@@ -297,7 +300,7 @@ class Pegawai extends CI_Controller
 				$this->data['csrf'] = $this->_get_csrf_nonce();
 				$this->data['code'] = $code;
 				// render
-				$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'reset_password', $this->data);
+				$this->_render_page('pegawai' . DIRECTORY_SEPARATOR . 'reset_password', $this->data);
 			}
 			else
 			{
@@ -317,12 +320,12 @@ class Pegawai extends CI_Controller
 					{
 						// if the password was successfully changed
 						$this->session->set_flashdata('message', $this->ion_auth->messages());
-						redirect("auth/login", 'refresh');
+						redirect("pegawai/login", 'refresh');
 					}
 					else
 					{
 						$this->session->set_flashdata('message', $this->ion_auth->errors());
-						redirect('auth/reset_password/' . $code, 'refresh');
+						redirect('pegawai/reset_password/' . $code, 'refresh');
 					}
 				}
 			}
@@ -331,7 +334,7 @@ class Pegawai extends CI_Controller
 		{
 			// if the code is invalid then send them back to the forgot password page
 			$this->session->set_flashdata('message', $this->ion_auth->errors());
-			redirect("auth/forgot_password", 'refresh');
+			redirect("pegawai/forgot_password", 'refresh');
 		}
 	}
 	/**
@@ -354,13 +357,13 @@ class Pegawai extends CI_Controller
 		{
 			// redirect them to the auth page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect("auth", 'refresh');
+			redirect("pegawai", 'refresh');
 		}
 		else
 		{
 			// redirect them to the forgot password page
 			$this->session->set_flashdata('message', $this->ion_auth->errors());
-			redirect("auth/forgot_password", 'refresh');
+			redirect("pegawai/forgot_password", 'refresh');
 		}
 	}
 	/**
@@ -384,7 +387,7 @@ class Pegawai extends CI_Controller
 			// insert csrf check
 			$this->data['csrf'] = $this->_get_csrf_nonce();
 			$this->data['user'] = $this->ion_auth->user($id)->row();
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'deactivate_user', $this->data);
+			$this->_render_page('pegawai' . DIRECTORY_SEPARATOR . 'deactivate_user', $this->data);
 		}
 		else
 		{
@@ -403,7 +406,7 @@ class Pegawai extends CI_Controller
 				}
 			}
 			// redirect them back to the auth page
-			redirect('auth', 'refresh');
+			redirect('pegawai', 'refresh');
 		}
 	}
 	/**
@@ -414,7 +417,7 @@ class Pegawai extends CI_Controller
 		$this->data['title'] = $this->lang->line('create_user_heading');
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
-			redirect('auth', 'refresh');
+			redirect('pegawai', 'refresh');
 		}
 		$tables = $this->config->item('tables', 'ion_auth');
 		$identity_column = $this->config->item('identity', 'ion_auth');
@@ -452,7 +455,7 @@ class Pegawai extends CI_Controller
 			// check to see if we are creating the user
 			// redirect them back to the admin page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect("auth", 'refresh');
+			redirect("pegawai", 'refresh');
 		}
 		else
 		{
@@ -507,7 +510,7 @@ class Pegawai extends CI_Controller
 				'type' => 'password',
 				'value' => $this->form_validation->set_value('password_confirm'),
 			);
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
+			$this->_render_page('pegawai' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
 		}
 	}
 	/**
@@ -515,7 +518,7 @@ class Pegawai extends CI_Controller
 	 */
 	public function redirectUser(){
 		if ($this->ion_auth->is_admin()){
-			redirect('auth', 'refresh');
+			redirect('pegawai', 'refresh');
 		}
 		redirect('/', 'refresh');
 	}
@@ -529,7 +532,7 @@ class Pegawai extends CI_Controller
 		$this->data['title'] = $this->lang->line('edit_user_heading');
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
 		{
-			redirect('auth', 'refresh');
+			redirect('pegawai', 'refresh');
 		}
 		$user = $this->ion_auth->user($id)->row();
 		$groups = $this->ion_auth->groups()->result_array();
@@ -636,7 +639,7 @@ class Pegawai extends CI_Controller
 			'id'   => 'password_confirm',
 			'type' => 'password'
 		);
-		$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'edit_user', $this->data);
+		$this->_render_page('pegawai' . DIRECTORY_SEPARATOR . 'edit_user', $this->data);
 	}
 	/**
 	 * Create a new group
@@ -646,7 +649,7 @@ class Pegawai extends CI_Controller
 		$this->data['title'] = $this->lang->line('create_group_title');
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
-			redirect('auth', 'refresh');
+			redirect('pegawai', 'refresh');
 		}
 		// validate form input
 		$this->form_validation->set_rules('group_name', $this->lang->line('create_group_validation_name_label'), 'trim|required|alpha_dash');
@@ -658,7 +661,7 @@ class Pegawai extends CI_Controller
 				// check to see if we are creating the group
 				// redirect them back to the admin page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("auth", 'refresh');
+				redirect("pegawai", 'refresh');
 			}
 		}
 		else
@@ -678,7 +681,7 @@ class Pegawai extends CI_Controller
 				'type'  => 'text',
 				'value' => $this->form_validation->set_value('description'),
 			);
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_group', $this->data);
+			$this->_render_page('pegawai' . DIRECTORY_SEPARATOR . 'create_group', $this->data);
 		}
 	}
 	/**
@@ -691,12 +694,12 @@ class Pegawai extends CI_Controller
 		// bail if no group id given
 		if (!$id || empty($id))
 		{
-			redirect('auth', 'refresh');
+			redirect('pegawai', 'refresh');
 		}
 		$this->data['title'] = $this->lang->line('edit_group_title');
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
-			redirect('auth', 'refresh');
+			redirect('pegawai', 'refresh');
 		}
 		$group = $this->ion_auth->group($id)->row();
 		// validate form input
@@ -714,7 +717,7 @@ class Pegawai extends CI_Controller
 				{
 					$this->session->set_flashdata('message', $this->ion_auth->errors());
 				}
-				redirect("auth", 'refresh');
+				redirect("pegawai", 'refresh');
 			}
 		}
 		// set the flash data error message if there is one
@@ -735,7 +738,7 @@ class Pegawai extends CI_Controller
 			'type'  => 'text',
 			'value' => $this->form_validation->set_value('group_description', $group->description),
 		);
-		$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
+		$this->_render_page('pegawai' . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
 	}
 	/**
 	 * @return array A CSRF key-value pair
