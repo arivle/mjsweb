@@ -23,7 +23,6 @@
                                 <div class="login-checkbox">
                                     <label>
                                         <?php echo form_checkbox('remember','1',FALSE);?> Remember Me
-                                        <!-- <input type="checkbox" name="remember">Remember Me -->
                                     </label>
                                 </div>
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
