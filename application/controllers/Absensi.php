@@ -26,7 +26,7 @@ class Absensi extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
-	public function tambahManual(){
+	function tambahManual(){
 		$data = array(
 			'idPegawai' => $this->input->post('pegawai-select'),
 			'tanggal' => $this->input->post('tanggal-input'),
@@ -38,4 +38,21 @@ class Absensi extends CI_Controller {
 		redirect('absensi');
 	}
 
+	function hapus($idAbsensi){
+		$this->M_absensi->hapusAbsensi($idAbsensi);
+		redirect('absensi');
+	}
+
+	function edit(){
+		$idAbsensi = $this->input->post();
+		$data = array(
+			'idPegawai' => $this->input->post('pegawai-select'),
+			'tanggal' => $this->input->post('tanggal-input'),
+			'waktuMasuk' => $this->input->post('masuk-input'),
+			'waktuKeluar' => $this->input->post('keluar-input'),
+			'keterangan' => $this->input->post('keterangan-input')
+		);
+		$this->M_absensi->updateAbsensi($idAbsensi,$data);
+		redirect('absensi');
+	}
 }
