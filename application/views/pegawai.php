@@ -42,6 +42,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="infoMessage"><?php echo $message;?></div>
                             <div class="table-responsive table-responsive-data2">
                                 <table class="table table-data2">
                                     <thead>
@@ -62,10 +63,12 @@
                                         <td><?= $i.'.'; ?></td>
                                         <td><?= $user->username ?></td>
                                         <td>
-                                            <span class="role admin">admin</span>
+                                            <?php foreach($user->groups as $grup) {?>
+                                            <span class="role <?php echo $grup->name; ?>"><?php echo $grup->name; ?></span>
+                                            <?php }?>
                                         </td>
                                         <td>
-                                            <span class="role member">aktif</span>
+                                            <span class="role members">aktif</span>
                                         </td>
                                         <td>
                                             <div class="table-data-feature">
@@ -76,10 +79,6 @@
                                                 <button class="item" data-toggle="tooltip" data-placement="top"
                                                         title="Delete">
                                                     <i class="zmdi zmdi-delete"></i>
-                                                </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="More">
-                                                    <i class="zmdi zmdi-more"></i>
                                                 </button>
                                             </div>
                                         </td>
@@ -107,10 +106,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="<?=base_url()?>pegawai/create_user" method="post" id="formTambahUser" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label class=" form-control-label">Static</label>
+                                    <label class="form-control-label">Static</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <p class="form-control-static">Username</p>
@@ -118,77 +117,92 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="nama-input" class=" form-control-label">Nama</label>
+                                    <label for="first_name" class=" form-control-label">Nama Depan</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="nama-input" name="nama-input" placeholder="John Doe" class="form-control">
-                                    <small class="form-text text-muted">Masukkan nama lengkap pegawai</small>
+                                    <input type="text" id="first_name" name="first_name" placeholder="John Doe" class="form-control">
+                                    <small class="form-text text-muted">Masukkan nama depan pegawai</small>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="email-input" class=" form-control-label">E-mail</label>
+                                    <label for="last_name" class=" form-control-label">Nama Belakang</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="email" id="email-input" name="email-input" placeholder="mail@example.com" class="form-control">
+                                    <input type="text" id="last_name" name="last_name" placeholder="John Doe" class="form-control">
+                                    <small class="form-text text-muted">Masukkan nama belakang pegawai</small>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="email" class=" form-control-label">E-mail</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="email" id="email" name="email" placeholder="mail@example.com" class="form-control">
                                     <small class="help-block form-text">Masukkan e-mail pegawai</small>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="username-input" class=" form-control-label">Username</label>
+                                    <label for="phone" class=" form-control-label">Phone</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="username-input" name="username-input" placeholder="johndoe" class="form-control">
-                                    <small class="form-text text-muted">Masukkan username pegawai</small>
+                                    <input type="text" id="phone" name="phone" placeholder="0812334567" class="form-control">
+                                    <small class="form-text text-muted">Masukkan no telepon</small>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="password-input" class=" form-control-label">Password</label>
+                                    <label for="username" class=" form-control-label">Nama Belakang</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="password" id="password-input" name="password-input" placeholder="Password" class="form-control">
+                                    <input type="text" id="username" name="username" placeholder="John Doe" class="form-control">
+                                    <small class="form-text text-muted">Masukkan username</small>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="password" class=" form-control-label">Password</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="password" id="password" name="password" placeholder="Password" class="form-control">
                                     <small class="help-block form-text">Masukkan password pegawai</small>
                                 </div>
                             </div>
                             <div class="row form-group">
+                                <?php if(isset($roles)){ ?>
                                 <div class="col col-md-3">
-                                    <label for="role-select" class=" form-control-label">Role</label>
+                                    <label for="groups" class=" form-control-label">Roles</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <select name="role-select" id="role-select" class="form-control">
-                                        <option value="0">Please select</option>
-                                        <option value="1">Option #1</option>
-                                        <option value="2">Option #2</option>
-                                        <option value="3">Option #3</option>
-                                    </select>
+                                    <?php foreach($roles as $group)
+                                    {
+                                    echo '<div class="checkbox">';
+                                        echo '<label>';
+                                            echo form_checkbox('groups', $group->id, set_checkbox('groups', $group->id));
+                                            echo ' '.$group->name;
+                                            echo '</label>';
+                                        echo '</div>';
+                                    }
+                                    } ?>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label class=" form-control-label">Status</label>
+                                    <label for="status" class=" form-control-label">Status</label>
                                 </div>
-                                <div class="col col-md-9">
-                                    <div class="form-check">
-                                        <div class="radio">
-                                            <label for="aktif" class="form-check-label ">
-                                                <input type="radio" id="aktif" name="aktif" value="option1" class="form-check-input">Pegawai Aktif
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label for="nonaktif" class="form-check-label ">
-                                                <input type="radio" id="nonaktif" name="nonaktif" value="option2" class="form-check-input">Pegawai Nonaktif
-                                            </label>
-                                        </div>
-                                    </div>
+                                <div class="col-12 col-md-9">
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="1">Pegawai Aktif</option>
+                                        <option value="2">Pegawai Nonaktif</option>
+                                    </select>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
+                        <button type="submit" form="formTambahUser" class="btn btn-primary">Confirm</button>
                     </div>
                 </div>
             </div>
