@@ -17,8 +17,10 @@ class M_daftarproyek extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('proyek');
-		$this->db->join('kategori', 'proyek.idKategori = kategori.idKategori', 'left');
+		$this->db->join('klien','proyek.idKlien = klien.idKlien');
+		$this->db->join('kategori', 'proyek.idKategori = kategori.idKategori');
 		$this->db->join('users','proyek.idPegawai = users.id');
+		$this->db->where('idProyek !=',1);
 		return $this->db->get();
 	}
 
