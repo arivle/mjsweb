@@ -47,6 +47,7 @@
                                     <thead>
                                     <tr>
                                         <th>no.</th>
+                                        <th>nama proyek</th>
                                         <th>nama klien</th>
                                         <th>kategori</th>
                                         <th>fee</th>
@@ -55,41 +56,43 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="tr-shadow">
-                                        <td>1.</td>
-                                        <td>Jonathan</td>
-                                       <!-- <td>
-                                            <div class="rs-select2--trans rs-select2--sm">
-                                                <select class="js-select2" name="property">
-                                                    <option value="">Web</option>
-                                                    <option value="" selected="selected">Aplikasi Desktop</option>
-                                                    <option value="">Android</option>
-                                                </select>
-                                                <div class="dropDownSelect2"></div>
-                                            </div>
-                                        </td>-->
-                                        <td>web</td>
-                                        <td>1000000</td>
-                                        <td>besok</td>
-                                        <td>loadhi</td>
-                                        <td>
-                                            <div class="table-data-feature">
-                                                <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="Edit">
-                                                    <i class="zmdi zmdi-edit"></i>
-                                                </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="Delete">
-                                                    <i class="zmdi zmdi-delete"></i>
-                                                </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="More">
-                                                    <i class="zmdi zmdi-more"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="spacer"></tr>
+									<?php
+									$i=0;
+									foreach ($proyek as $p) {
+										$i++;
+										?>
+										<tr class="tr-shadow">
+											<td><?= $i.'.' ?></td>
+											<td><?= $p->namaProyek ?></td>
+											<td><?= $p->namaKlien ?></td>
+											<td><?= $p->namaKategori ?></td>
+											<td><?= $p->fee ?></td>
+											<td><?= $p->deadline ?></td>
+											<td><?= $p->first_name . ' ' . $p->last_name ?></td>
+											<td>
+												<div class="table-data-feature">
+													<button class="item"
+															title="Edit" data-toggle="modal"
+															data-target="#editData-<?= $p->idProyek ?>">
+														<i class="zmdi zmdi-edit"></i>
+													</button>
+													<button class="item" data-toggle="tooltip" data-placement="top"
+															title="Delete"
+															onclick="window.location.href='<?= base_url() . "daftarproyek/hapus/" . $p->idProyek ?>'">
+														<i class="zmdi zmdi-delete"></i>
+													</button>
+													<button class="item" data-toggle="tooltip" data-placement="top"
+															title="More">
+														<i class="zmdi zmdi-more"></i>
+													</button>
+												</div>
+											</td>
+										</tr>
+										<tr class="spacer"></tr>
+										<?php
+									}
+									unset($p);
+									?>
                                     </tbody>
                                 </table>
                             </div>
