@@ -177,7 +177,7 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<form action="<?= base_url() ?>klien/edit" id="formEditData-<?=$k->idKlien?>"" method="post" enctype="multipart/form-data" class="form-horizontal">
+							<form action="<?= base_url() ?>klien/edit" id="formEditData-<?=$k->idKlien?>" method="post" enctype="multipart/form-data" class="form-horizontal">
 							<input type="hidden" value="<?=$k->idKlien?>" name="id-input">
 							<div class="row form-group">
 									<div class="col col-md-3">

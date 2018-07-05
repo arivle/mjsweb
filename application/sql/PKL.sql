@@ -11,7 +11,7 @@
  Target Server Version : 100129
  File Encoding         : 65001
 
- Date: 05/07/2018 08:17:52
+ Date: 05/07/2018 08:50:03
 */
 
 SET NAMES utf8mb4;
@@ -125,7 +125,7 @@ CREATE TABLE `proyek`  (
   `namaProyek` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `idKategori` int(11) NULL DEFAULT NULL,
   `fee` bigint(20) NULL DEFAULT NULL,
-  `deadline` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `deadline` date NULL DEFAULT NULL,
   `idPegawai` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`idProyek`) USING BTREE,
   INDEX `idKategori`(`idKategori`) USING BTREE,
@@ -133,13 +133,14 @@ CREATE TABLE `proyek`  (
   INDEX `idKlien`(`idKlien`) USING BTREE,
   CONSTRAINT `proyek_ibfk_2` FOREIGN KEY (`idKategori`) REFERENCES `kategori` (`idKategori`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `proyek_ibfk_3` FOREIGN KEY (`idKlien`) REFERENCES `klien` (`idKlien`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of proyek
 -- ----------------------------
-INSERT INTO `proyek` VALUES (1, NULL, 'Lain-Lain', NULL, NULL, '2018-07-05 07:38:49', NULL);
-INSERT INTO `proyek` VALUES (2, 1, 'Proyek A', 1, 10000, '2018-07-01 07:39:02', 1);
+INSERT INTO `proyek` VALUES (1, NULL, 'Lain-Lain', NULL, NULL, '2018-07-05', NULL);
+INSERT INTO `proyek` VALUES (2, 1, 'Proyek A', 1, 150000, '2018-07-26', 1);
+INSERT INTO `proyek` VALUES (3, 2, 'naSI jumbo', 1, 90000, '2018-07-26', 1);
 
 -- ----------------------------
 -- Table structure for role

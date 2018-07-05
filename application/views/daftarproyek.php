@@ -114,7 +114,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="<?= base_url() ?>daftarproyek/tambah" id="formTambahData" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label class=" form-control-label">Static</label>
@@ -125,37 +125,64 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="nama-input" class=" form-control-label">Nama Klien</label>
+                                    <label for="klien-select" class=" form-control-label">Nama Klien</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+									<select name="klien-select" id="klien-select" class="form-control">
+										<option value="0">Please select</option>
+										<?php
+										foreach ($klien as $k) {
+											?>
+											<option value="<?=$k->idKlien?>"> <?=$k->namaKlien?></option>
+											<?php
+										}
+										unset($k);
+										?>
+									</select>
+                                </div>
+                            </div> 
+							<div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="nama-input" class=" form-control-label">Nama Proyek</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
-                                    <small class="form-text text-muted">Masukkan nama klien </small>
+                                    <small class="form-text text-muted">Masukkan nama proyek </small>
                                 </div>
-                            </div> 
+                            </div>
                                 <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="nama-input" class=" form-control-label">kategori</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
-                                    <small class="form-text text-muted">Masukkan kategori proyek </small>
+									<select name="kategori-select" id="kategori-select" class="form-control">
+										<option value="0">Please select</option>
+										<?php
+										foreach ($kategori as $c) {
+											?>
+											<option value="<?=$c->idKategori?>"> <?=$c->namaKategori?></option>
+											<?php
+										}
+										unset($k);
+										?>
+									</select>
                                 </div>
                             </div>
                              <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="nama-input" class=" form-control-label">fee</label>
+                                    <label for="fee-input" class=" form-control-label">fee</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <input type="number" id="fee-input" name="fee-input" placeholder="" class="form-control">
                                     <small class="form-text text-muted">Masukkan fee </small>
                                 </div>
                             </div>
                               <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="nama-input" class=" form-control-label">deadline</label>
+                                    <label for="deadline-input" class=" form-control-label">deadline</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="tanggal-input" id="nama-input" name="nama-input" placeholder="" class="form-control">
+                                    <input type="date" id="deadline-input" name="deadline-input" placeholder="" class="form-control">
                                     <small class="form-text text-muted">Masukkan tanggal deadline </small>
                                 </div>
                             </div>
@@ -164,17 +191,146 @@
                                     <label for="nama-input" class=" form-control-label">nama pegawai</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control">
-                                    <small class="form-text text-muted">Masukkan nama pegawai yang melayani</small>
+									<select name="pegawai-select" id="pegawai-select" class="form-control">
+										<option value="0">Please select</option>
+										<?php
+										foreach ($pegawai as $p) {
+											?>
+											<option value="<?=$p->id?>" > <?=$p->first_name . " " . $p->last_name?></option>
+											<?php
+										}
+										unset($p);
+										?>
+									</select>
+                                    <small class="form-text text-muted">Pilih nama pegawai yang melayani</small>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Confirm</button>
+						<button type="submit" form="formTambahData" class="btn btn-primary">Confirm</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- end modal create -->
+
+		<?php
+		foreach ($proyek as $p){?>
+			<!-- modal create -->
+			<div class="modal fade" id="editData-<?= $p->idProyek ?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-md" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="mediumModalLabel">Edit Data</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="<?= base_url() ?>daftarproyek/edit" id="formEditData-<?=$p->idProyek?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+							<input type="hidden" value="<?=$p->idProyek?>" name="id-input">
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label class=" form-control-label">Static</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<p class="form-control-static">Proyek</p>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="klien-select" class=" form-control-label">Nama Klien</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<select name="klien-select" id="klien-select" class="form-control">
+											<option value="0">Please select</option>
+											<?php
+											foreach ($klien as $k) {
+												?>
+												<option value="<?=$k->idKlien?>" <?= $k->idKlien == $p->idKlien?'selected':'' ?>> <?=$k->namaKlien?></option>
+												<?php
+											}
+											unset($k);
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="nama-input" class=" form-control-label">Nama Proyek</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<input type="text" id="nama-input" name="nama-input" placeholder="" class="form-control" value="<?= $p->namaProyek?>">
+										<small class="form-text text-muted">Masukkan nama proyek </small>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="nama-input" class=" form-control-label">kategori</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<select name="kategori-select" id="kategori-select" class="form-control">
+											<option value="0">Please select</option>
+											<?php
+											foreach ($kategori as $c) {
+												?>
+												<option value="<?=$c->idKategori?>" <?= $c->idKategori == $p->idKategori?'selected':'' ?>> <?=$c->namaKategori?></option>
+												<?php
+											}
+											unset($k);
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="fee-input" class=" form-control-label">fee</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<input type="number" id="fee-input" name="fee-input" placeholder="" class="form-control" value="<?= $p->fee?>">
+										<small class="form-text text-muted">Masukkan fee </small>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="deadline-input" class=" form-control-label">deadline</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<input type="date" id="deadline-input" name="deadline-input" placeholder="" class="form-control" value="<?= $p->deadline?>">
+										<small class="form-text text-muted">Masukkan tanggal deadline </small>
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col col-md-3">
+										<label for="nama-input" class=" form-control-label">nama pegawai</label>
+									</div>
+									<div class="col-12 col-md-9">
+										<select name="pegawai-select" id="pegawai-select" class="form-control">
+											<option value="0">Please select</option>
+											<?php
+											foreach ($pegawai as $u) {
+												?>
+												<option value="<?=$u->id?>" <?= $u->id == $p->idPegawai?'selected':'' ?>> <?=$u->first_name . " " . $u->last_name?></option>
+												<?php
+											}
+											unset($u);
+											?>
+										</select>
+										<small class="form-text text-muted">Pilih nama pegawai yang melayani</small>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+							<button type="submit" form="formEditData-<?=$p->idProyek?>" class="btn btn-primary">Confirm</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end modal create -->
+		<?php }
+		unset($p);
+		?>
