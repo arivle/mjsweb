@@ -1,346 +1,211 @@
--- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Jul 05, 2018 at 02:15 AM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.2.0
+/*
+ Navicat Premium Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+ Source Server         : xampp
+ Source Server Type    : MySQL
+ Source Server Version : 100129
+ Source Host           : localhost:3306
+ Source Schema         : emjesweb
 
+ Target Server Type    : MySQL
+ Target Server Version : 100129
+ File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+ Date: 05/07/2018 08:04:35
+*/
 
---
--- Database: `emjesweb`
---
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Table structure for absensi
+-- ----------------------------
+DROP TABLE IF EXISTS `absensi`;
+CREATE TABLE `absensi`  (
+  `idAbsensi` bigint(20) NOT NULL AUTO_INCREMENT,
+  `idPegawai` int(11) NULL DEFAULT NULL,
+  `waktuMasuk` time(0) NULL DEFAULT NULL,
+  `waktuKeluar` time(0) NULL DEFAULT NULL,
+  `tanggal` date NULL DEFAULT NULL,
+  `keterangan` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  PRIMARY KEY (`idAbsensi`) USING BTREE,
+  INDEX `fk_absensi_pegawai_1`(`idPegawai`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
---
--- Table structure for table `absensi`
---
+-- ----------------------------
+-- Records of absensi
+-- ----------------------------
+INSERT INTO `absensi` VALUES (1, 1, '20:37:28', '20:37:29', '2018-07-05', 'Baby shark dudududu!!!');
+INSERT INTO `absensi` VALUES (3, 1, '20:37:28', '20:37:29', '2018-07-05', 'Baby shark dudududu~');
+INSERT INTO `absensi` VALUES (10, 1, '06:00:00', '03:30:00', '2018-07-26', 'Lupakan');
 
-CREATE TABLE `absensi` (
-  `idAbsensi` bigint(20) NOT NULL,
-  `idPegawai` int(11) DEFAULT NULL,
-  `waktuMasuk` time DEFAULT NULL,
-  `waktuKeluar` time DEFAULT NULL,
-  `tanggal` date DEFAULT NULL,
-  `keterangan` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- ----------------------------
+-- Table structure for bukti
+-- ----------------------------
+DROP TABLE IF EXISTS `bukti`;
+CREATE TABLE `bukti`  (
+  `idBukti` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `buktiGambar` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`idBukti`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `absensi`
---
+-- ----------------------------
+-- Table structure for groups
+-- ----------------------------
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE `groups`  (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
-INSERT INTO `absensi` (`idAbsensi`, `idPegawai`, `waktuMasuk`, `waktuKeluar`, `tanggal`, `keterangan`) VALUES
-(1, 1, '20:37:28', '20:37:29', '2018-07-05', 'Baby shark dudududu!!!'),
-(3, 1, '20:37:28', '20:37:29', '2018-07-05', 'Baby shark dudududu~'),
-(10, 1, '06:00:00', '03:30:00', '2018-07-26', 'Lupakan');
+-- ----------------------------
+-- Records of groups
+-- ----------------------------
+INSERT INTO `groups` VALUES (1, 'admin', 'Administrator');
+INSERT INTO `groups` VALUES (2, 'members', 'General User');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `bukti`
---
-
-CREATE TABLE `bukti` (
-  `idBukti` varchar(10) NOT NULL,
-  `buktiGambar` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `groups`
---
-
-CREATE TABLE `groups` (
-  `id` mediumint(8) UNSIGNED NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `description` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `groups`
---
-
-INSERT INTO `groups` (`id`, `name`, `description`) VALUES
-(1, 'admin', 'Administrator'),
-(2, 'members', 'General User');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kategori`
---
-
-CREATE TABLE `kategori` (
+-- ----------------------------
+-- Table structure for kategori
+-- ----------------------------
+DROP TABLE IF EXISTS `kategori`;
+CREATE TABLE `kategori`  (
   `idKategori` int(11) NOT NULL,
-  `namaKategori` varchar(32) DEFAULT NULL,
-  `statusKategori` smallint(1) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `namaKategori` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `statusKategori` smallint(1) NULL DEFAULT 1,
+  PRIMARY KEY (`idKategori`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of kategori
+-- ----------------------------
+INSERT INTO `kategori` VALUES (1, 'web', 1);
+INSERT INTO `kategori` VALUES (2, 'android', 1);
+INSERT INTO `kategori` VALUES (3, 'desktop', 1);
 
---
--- Table structure for table `klien`
---
+-- ----------------------------
+-- Table structure for klien
+-- ----------------------------
+DROP TABLE IF EXISTS `klien`;
+CREATE TABLE `klien`  (
+  `idKlien` int(11) NOT NULL AUTO_INCREMENT,
+  `namaKlien` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `noTelp` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `alamat` tinytext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  PRIMARY KEY (`idKlien`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
-CREATE TABLE `klien` (
-  `idKlien` int(11) NOT NULL,
-  `namaKlien` varchar(32) DEFAULT NULL,
-  `noTelp` varchar(15) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `alamat` tinytext
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- ----------------------------
+-- Records of klien
+-- ----------------------------
+INSERT INTO `klien` VALUES (1, 'Pak Johny', '0812810820180', 'exemplar@gmail.com', 'Uganda');
+INSERT INTO `klien` VALUES (2, 'Pak Edy', '08980808080', 'mailkskda@mail.com', 'Asgard');
 
---
--- Dumping data for table `klien`
---
+-- ----------------------------
+-- Table structure for login_attempts
+-- ----------------------------
+DROP TABLE IF EXISTS `login_attempts`;
+CREATE TABLE `login_attempts`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `login` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `time` int(11) UNSIGNED NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
-INSERT INTO `klien` (`idKlien`, `namaKlien`, `noTelp`, `email`, `alamat`) VALUES
-(1, 'Pak Johny', '0812810820180', 'exemplar@gmail.com', 'Uganda'),
-(2, 'Pak Edy', '08980808080', 'mailkskda@mail.com', 'Asgard');
+-- ----------------------------
+-- Table structure for proyek
+-- ----------------------------
+DROP TABLE IF EXISTS `proyek`;
+CREATE TABLE `proyek`  (
+  `idProyek` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `idKlien` int(11) NULL DEFAULT NULL,
+  `namaProyek` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `idKategori` int(11) NULL DEFAULT NULL,
+  `fee` bigint(20) NULL DEFAULT NULL,
+  `deadline` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `idPegawai` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`idProyek`) USING BTREE,
+  INDEX `idKategori`(`idKategori`) USING BTREE,
+  INDEX `idPegawai`(`idPegawai`) USING BTREE,
+  INDEX `idKlien`(`idKlien`) USING BTREE,
+  CONSTRAINT `proyek_ibfk_2` FOREIGN KEY (`idKategori`) REFERENCES `kategori` (`idKategori`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `proyek_ibfk_3` FOREIGN KEY (`idKlien`) REFERENCES `klien` (`idKlien`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of proyek
+-- ----------------------------
+INSERT INTO `proyek` VALUES ('1', NULL, 'Lain-Lain', NULL, NULL, '2018-07-05 07:38:49', NULL);
+INSERT INTO `proyek` VALUES ('2', 1, 'Proyek A', 1, 10000, '2018-07-01 07:39:02', 1);
 
---
--- Table structure for table `login_attempts`
---
-
-CREATE TABLE `login_attempts` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `login` varchar(100) NOT NULL,
-  `time` int(11) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `proyek`
---
-
-CREATE TABLE `proyek` (
-  `idProyek` varchar(10) NOT NULL,
-  `idKlien` int(11) DEFAULT NULL,
-  `namaProyek` varchar(100) DEFAULT NULL,
-  `idKategori` int(11) DEFAULT NULL,
-  `fee` bigint(20) DEFAULT NULL,
-  `deadline` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `idPegawai` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `role`
---
-
-CREATE TABLE `role` (
+-- ----------------------------
+-- Table structure for role
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role`  (
   `idRole` int(11) NOT NULL,
-  `namaRole` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `namaRole` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`idRole`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `role`
---
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES (1, 'Admin');
 
-INSERT INTO `role` (`idRole`, `namaRole`) VALUES
-(1, 'Admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `salt` varchar(255) DEFAULT NULL,
-  `email` varchar(254) NOT NULL,
-  `activation_code` varchar(40) DEFAULT NULL,
-  `forgotten_password_code` varchar(40) DEFAULT NULL,
-  `forgotten_password_time` int(11) UNSIGNED DEFAULT NULL,
-  `remember_code` varchar(40) DEFAULT NULL,
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(254) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `activation_code` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `forgotten_password_code` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `forgotten_password_time` int(11) UNSIGNED NULL DEFAULT NULL,
+  `remember_code` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `created_on` int(11) UNSIGNED NOT NULL,
-  `last_login` int(11) UNSIGNED DEFAULT NULL,
-  `active` tinyint(1) UNSIGNED DEFAULT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
-  `company` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `last_login` int(11) UNSIGNED NULL DEFAULT NULL,
+  `active` tinyint(1) UNSIGNED NULL DEFAULT NULL,
+  `first_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `company` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `users`
---
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES (1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, '.kXHPvkubbQ7jdcEa2K1Ze', 1268889823, 1530722659, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
-INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, '.kXHPvkubbQ7jdcEa2K1Ze', 1268889823, 1530722659, 1, 'Admin', 'istrator', 'ADMIN', '0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users_groups`
---
-
-CREATE TABLE `users_groups` (
-  `id` int(11) UNSIGNED NOT NULL,
+-- ----------------------------
+-- Table structure for users_groups
+-- ----------------------------
+DROP TABLE IF EXISTS `users_groups`;
+CREATE TABLE `users_groups`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` int(11) UNSIGNED NOT NULL,
-  `group_id` mediumint(8) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `group_id` mediumint(8) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `uc_users_groups`(`user_id`, `group_id`) USING BTREE,
+  INDEX `fk_users_groups_users1_idx`(`user_id`) USING BTREE,
+  INDEX `fk_users_groups_groups1_idx`(`group_id`) USING BTREE,
+  CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `users_groups`
---
+-- ----------------------------
+-- Records of users_groups
+-- ----------------------------
+INSERT INTO `users_groups` VALUES (1, 1, 1);
+INSERT INTO `users_groups` VALUES (2, 1, 2);
 
-INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(1, 1, 1),
-(2, 1, 2);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `absensi`
---
-ALTER TABLE `absensi`
-  ADD PRIMARY KEY (`idAbsensi`),
-  ADD KEY `fk_absensi_pegawai_1` (`idPegawai`);
-
---
--- Indexes for table `bukti`
---
-ALTER TABLE `bukti`
-  ADD PRIMARY KEY (`idBukti`);
-
---
--- Indexes for table `groups`
---
-ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `kategori`
---
-ALTER TABLE `kategori`
-  ADD PRIMARY KEY (`idKategori`);
-
---
--- Indexes for table `klien`
---
-ALTER TABLE `klien`
-  ADD PRIMARY KEY (`idKlien`);
-
---
--- Indexes for table `login_attempts`
---
-ALTER TABLE `login_attempts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `proyek`
---
-ALTER TABLE `proyek`
-  ADD PRIMARY KEY (`idProyek`),
-  ADD KEY `idKategori` (`idKategori`),
-  ADD KEY `idPegawai` (`idPegawai`),
-  ADD KEY `idKlien` (`idKlien`);
-
---
--- Indexes for table `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`idRole`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users_groups`
---
-ALTER TABLE `users_groups`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
-  ADD KEY `fk_users_groups_users1_idx` (`user_id`),
-  ADD KEY `fk_users_groups_groups1_idx` (`group_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `absensi`
---
-ALTER TABLE `absensi`
-  MODIFY `idAbsensi` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `groups`
---
-ALTER TABLE `groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `klien`
---
-ALTER TABLE `klien`
-  MODIFY `idKlien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `login_attempts`
---
-ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `users_groups`
---
-ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `proyek`
---
-ALTER TABLE `proyek`
-  ADD CONSTRAINT `proyek_ibfk_2` FOREIGN KEY (`idKategori`) REFERENCES `kategori` (`idKategori`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `proyek_ibfk_3` FOREIGN KEY (`idKlien`) REFERENCES `klien` (`idKlien`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `users_groups`
---
-ALTER TABLE `users_groups`
-  ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS = 1;
