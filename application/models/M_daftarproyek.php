@@ -24,6 +24,13 @@ class M_daftarproyek extends CI_Model
 		return $this->db->get();
 	}
 
+	function getPegawais()
+	{
+		$this->db->select('id,first_name,last_name');
+		$this->db->from('users');
+		return $this->db->get();
+	}
+
 	function getKategori()
 	{
 		return $this->db->get('kategori');
